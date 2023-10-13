@@ -16,7 +16,18 @@ class App
   private
 
   def run
-    puts 'Rodanddo app.....'
+    while keep_going
+      STDOUT.clear_screen
+      @menu.display_menu
+      puts 'Opção selecionada!' if keep_going?
+      sleep 2
+    end
+  end
+
+  def keep_going?
+    @user_option = gets.chomp.to_i
+    self.keep_going = false if @menu.options[@user_option] == :exit
+    self.keep_going
   end
 end
 
